@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'dashboard',
 
 ]
-# AUTH_USER_MODEL = "accounts.CustomUser"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
