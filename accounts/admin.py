@@ -1,6 +1,8 @@
 
-from django.contrib import admin
-from .models import Customer, Seller
 
-admin.site.register(Customer)
-admin.site.register(Seller)
+
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import CustomUser
+
+admin.site.register(CustomUser, UserAdmin)
