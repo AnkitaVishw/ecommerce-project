@@ -15,6 +15,7 @@ class UserRegistrationForm(UserCreationForm):
             "shop_name",
             "password1",
             "password2",
+
         ]
 
     def clean(self):
