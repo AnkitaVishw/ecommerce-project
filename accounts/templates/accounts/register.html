@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Register</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h2>User Register</h2>
+{% block title %}
+Register
+{% endblock %}
 
-<form method="post">
+{% block content %}
+
+<h2>Register</h2>
+
+<form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Register</button>
 </form>
 
-</body>
-</html>
+{% endblock %}

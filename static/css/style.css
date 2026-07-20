@@ -1,0 +1,41 @@
+body{
+    background:#f5f5f5;
+}
+
+.navbar-brand{
+    font-size:28px;
+}
+
+.card{
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+footer{
+    margin-top:80px;
+}
+
+.card{
+    border:none;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.card-title{
+    font-weight:600;
+}
+
+.badge{
+    width:fit-content;
+}
+
+.card img{
+    object-fit:cover;
+}
