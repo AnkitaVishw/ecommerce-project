@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% block title %}Login{% endblock %}
@@ -8,7 +7,6 @@
 <h2>Welcome Back 👋</h2>
 
 <form method="POST">
-
     {% csrf_token %}
 
     <p>
@@ -34,6 +32,7 @@
     <button type="submit">
         Login
     </button>
+</form>
 
 <p style="text-align:center;margin-top:20px;">
     Don't have an account?
@@ -43,5 +42,3 @@
 </p>
 
 {% endblock %}
-
-

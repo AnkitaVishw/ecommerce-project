@@ -18,6 +18,7 @@ footer{
     margin-top:80px;
 }
 
+
 .card{
     border:none;
     transition:0.3s;
@@ -39,3 +40,4 @@ footer{
 .card img{
     object-fit:cover;
 }
+
