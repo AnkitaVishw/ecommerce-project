@@ -3,18 +3,28 @@ from django.contrib.auth.decorators import login_required
 from .models import Product
 
 
+from .models import Product, Category
+
 @login_required
 def product_list(request):
     products = Product.objects.select_related("category").all()
+    categories = Category.objects.all()
+
+    query = request.GET.get("q")
+
+    if query:
+        products = products.filter(name__icontains=query)
 
     context = {
-        "products": products
+        "products": products,
+        "categories": categories,
+        "query": query,
     }
 
     return render(
         request,
         "products/product_list.html",
-        context
+        context,
     )
 
 

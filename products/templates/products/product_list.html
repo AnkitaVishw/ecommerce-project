@@ -7,7 +7,10 @@ E-Shop | Products
 {% block content %}
 
 <!-- Hero Banner -->
+{% if not request.GET.q and not request.GET.category %}
+
 <div class="hero-banner mb-5">
+
     <div class="row align-items-center">
 
         <div class="col-md-6">
@@ -31,21 +34,51 @@ E-Shop | Products
         </div>
 
     </div>
+
 </div>
+
+{% endif %}
 
 <!-- Categories -->
 <h3 class="mb-4">Shop by Category</h3>
 
 <div class="d-flex flex-wrap gap-3 mb-5">
 
-    <button class="btn btn-outline-primary">💻 Electronics</button>
-    <button class="btn btn-outline-primary">👕 Fashion</button>
-    <button class="btn btn-outline-primary">👟 Shoes</button>
-    <button class="btn btn-outline-primary">📚 Books</button>
-    <button class="btn btn-outline-primary">🏠 Home</button>
+    <a href="{% url 'product_list' %}"
+       class="btn btn-outline-dark">
+        All
+    </a>
+
+    {% for category in categories %}
+
+        <a href="?category={{ category.id }}"
+           class="btn btn-outline-primary">
+            {{ category.name }}
+        </a>
+
+    {% endfor %}
 
 </div>
+{% if request.GET.q %}
 
+<h3 class="mb-4">
+    Search Results for
+    <span class="text-primary">"{{ request.GET.q }}"</span>
+</h3>
+
+{% elif request.GET.category %}
+
+<h3 class="mb-4">
+    Filtered Products
+</h3>
+
+{% else %}
+
+<h3 class="mb-4">
+    Featured Products
+</h3>
+
+{% endif %}
 <!-- Products -->
 <h3 class="mb-4">Featured Products</h3>
 
@@ -131,9 +164,18 @@ E-Shop | Products
 
 {% empty %}
 
-<div class="text-center">
+<div class="text-center py-5">
 
-    <h3>No Products Available</h3>
+    <h2>No products found 😔</h2>
+
+    <p>
+        Try searching with another keyword.
+    </p>
+
+    <a href="{% url 'product_list' %}"
+       class="btn btn-primary">
+        View All Products
+    </a>
 
 </div>
 
