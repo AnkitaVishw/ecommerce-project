@@ -35,7 +35,9 @@ body {
 .card img {
     height: 240px;
     object-fit: cover;
-}
+
+
+
 
 .card-title,
 .card-body h5 {
@@ -54,3 +56,4 @@ body {
 footer {
     margin-top: 80px;
 }
+
