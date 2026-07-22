@@ -7,25 +7,24 @@ from .models import Product, Category
 
 @login_required
 def product_list(request):
-    products = Product.objects.select_related("category").all()
+    products = Product.objects.all()
     categories = Category.objects.all()
 
     query = request.GET.get("q")
+    category = request.GET.get("category")
 
     if query:
         products = products.filter(name__icontains=query)
 
+    if category:
+        products = products.filter(category__name=category)
+
     context = {
         "products": products,
         "categories": categories,
-        "query": query,
     }
 
-    return render(
-        request,
-        "products/product_list.html",
-        context,
-    )
+    return render(request, "products/product_list.html", context)
 
 
 @login_required
