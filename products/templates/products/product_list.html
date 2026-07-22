@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block title %}
+E-Shop | Products
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Banner -->
+{% if not request.GET.q and not request.GET.category %}
+
+<div class="hero-banner mb-5">
+
+    <div class="row align-items-center">
+
+        <div class="col-md-6">
+            <h1 class="display-4 fw-bold">
+                🔥 Mega Sale
+            </h1>
+
+            <p class="lead">
+                Up to 70% OFF on Electronics, Fashion & More
+            </p>
+
+            <a href="#" class="btn btn-warning btn-lg">
+                Shop Now
+            </a>
+        </div>
+
+        <div class="col-md-6 text-center">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=900"
+                 class="img-fluid rounded"
+                 alt="Sale Banner">
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+<!-- Categories -->
+<h3 class="mb-4">Shop by Category</h3>
+
+<div class="d-flex flex-wrap gap-3 mb-5">
+
+    <a href="{% url 'product_list' %}"
+       class="btn btn-outline-dark">
+        All
+    </a>
+
+    {% for category in categories %}
+
+        <a href="?category={{ category.id }}"
+           class="btn btn-outline-primary">
+            {{ category.name }}
+        </a>
+
+    {% endfor %}
+
+</div>
+{% if request.GET.q %}
+
+<h3 class="mb-4">
+    Search Results for
+    <span class="text-primary">"{{ request.GET.q }}"</span>
+</h3>
+
+{% elif request.GET.category %}
+
+<h3 class="mb-4">
+    Filtered Products
+</h3>
+
+{% else %}
+
+<h3 class="mb-4">
+    Featured Products
+</h3>
+
+{% endif %}
+<!-- Products -->
+<h3 class="mb-4">Featured Products</h3>
+
+<div class="row">
+
+{% for product in products %}
+
+<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+    <div class="card product-card h-100">
+
+        {% if product.image %}
+
+            <img src="{{ product.image.url }}"
+                 class="card-img-top product-image"
+                 alt="{{ product.name }}">
+
+        {% else %}
+
+            <img src="https://placehold.co/400x300?text=No+Image"
+                 class="card-img-top product-image"
+                 alt="No Image">
+
+        {% endif %}
+
+        <div class="card-body d-flex flex-column">
+
+            <span class="badge bg-primary mb-2">
+                {{ product.category.name }}
+            </span>
+
+            <h5 class="fw-bold">
+                {{ product.name }}
+            </h5>
+
+            <div class="text-warning mb-2">
+                ★★★★☆
+                <small class="text-dark">(4.5)</small>
+            </div>
+
+            <p class="text-muted">
+                {{ product.description|truncatewords:10 }}
+            </p>
+
+            <h4 class="text-success mb-0">
+                ₹{{ product.price }}
+            </h4>
+
+            <small class="text-decoration-line-through text-secondary">
+                ₹{{ product.price|add:1000 }}
+            </small>
+
+            <span class="badge bg-danger w-50 mt-2">
+                20% OFF
+            </span>
+
+            <small class="text-success mt-2">
+                ✓ Free Delivery
+            </small>
+
+            <small class="text-secondary">
+                Stock : {{ product.stock }}
+            </small>
+
+            <div class="d-flex gap-2 mt-auto pt-3">
+
+                <a href="{% url 'product_detail' product.id %}"
+                   class="btn btn-primary flex-fill">
+                    View
+                </a>
+
+                <button class="btn btn-success flex-fill">
+                    Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<div class="text-center py-5">
+
+    <h2>No products found 😔</h2>
+
+    <p>
+        Try searching with another keyword.
+    </p>
+
+    <a href="{% url 'product_list' %}"
+       class="btn btn-primary">
+        View All Products
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

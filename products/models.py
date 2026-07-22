@@ -19,7 +19,6 @@ class Product(models.Model):
         blank=True,
         null=True
     )
-
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,

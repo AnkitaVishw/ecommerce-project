@@ -1,5 +1,5 @@
 # Python
-__pycache__/
+**/__pycache__/
 *.py[cod]
 
 # Virtual environment
@@ -7,10 +7,11 @@ venv/
 ecom/
 
 # Database
-db.sqlite3
+
 
 # Media
 media/
+
 
 # Environment variables
 .env
