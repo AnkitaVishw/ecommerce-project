@@ -7,7 +7,7 @@ venv/
 ecom/
 
 # Database
-db.sqlite3
+
 
 # Media
 media/
