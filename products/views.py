@@ -10,21 +10,15 @@ def product_list(request):
     products = Product.objects.all()
     categories = Category.objects.all()
 
-    query = request.GET.get("q")
     category = request.GET.get("category")
-
-    if query:
-        products = products.filter(name__icontains=query)
 
     if category:
         products = products.filter(category__name=category)
 
-    context = {
+    return render(request, "products/product_list.html", {
         "products": products,
         "categories": categories,
-    }
-
-    return render(request, "products/product_list.html", context)
+    })
 
 
 @login_required
